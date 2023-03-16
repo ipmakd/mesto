@@ -1,0 +1,34 @@
+.profile {
+  display: grid;
+  padding-top: 41px;
+  padding-bottom: 50px;
+  width: 100%;
+  grid-template-columns: 120px 336px auto;
+  grid-template-areas:
+  "photo info add-button";
+}
+
+
+@media screen and (max-width: 730px) {
+  .profile {
+    width: 100%;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "photo info"
+      "add-button add-button";
+    row-gap: 20px;
+  }
+}
+
+
+@media screen and (max-width: 500px) {
+  .profile {
+    width: 100%;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "photo"
+      "info"
+      "add-button";
+    row-gap: 20px;
+  }
+}

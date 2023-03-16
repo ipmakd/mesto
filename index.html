@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Проект Место</title>
+  <link rel="stylesheet" href="./pages/index.css">
+</head>
+<body class="root">
+   <header class="header"> 
+    <img class="header__logo" src="./images/logo.svg" alt="Логотип проекта Место">
+    <div class="header__line"></div>
+  </header>
+  <section class="form">
+    <div class="form__container">
+      <button class="form__close"></button>
+      <h2 class="form__title">Редактировать профиль</h2>
+      <div class="form__input-container">
+        <input class="form__input form__input_name" type="text" name="profile__name" placeholder="Жак-Ив Кусто">
+        <div class="form__line"></div>
+        <input class="form__input form__input_job" type="text" name="profile__job" placeholder="Исследователь океана">
+        <div class="form__line"></div>
+        <button class="form__button-save">Сохранить</button>
+      </div>
+     
+    </div>
+  </section>
+  <main class="content">
+    <section class="profile">
+      <img class="profile__photo" src="./images/Kusto.jpg" alt="аватар">
+      <div class="profile__columns">
+        <div class="profile__info">
+          <h1 class="profile__name">Жак-Ив Кусто</h1>
+          <p class="profile__job">Исследователь океана</p>
+        </div>
+        <button class="profile__edit-button"></button>
+      </div>
+      <button class="profile__add-button"></button>
+    </section> 
+     <section class="photo-grid"> 
+      <ul class="photo-grid__list">
+        <li class="photo-grid__item">
+          <img class="photo-grid__image" src="./images/kirill-pershin-1088404-unsplash.jpg" alt="">
+          <h3 class="photo-grid__title">Карачаевск-1</h3>
+          <button class="photo-grid__like"></button>
+        </li>
+        <li class="photo-grid__item">
+          <img class="photo-grid__image" src="./images/kirill-pershin-1088404-unsplash.jpg" alt="">
+          <h3 class="photo-grid__title">Карачаевск-1</h3>
+          <button class="photo-grid__like"></button>
+        </li>
+        <li class="photo-grid__item">
+          <img class="photo-grid__image" src="./images/kirill-pershin-1088404-unsplash.jpg" alt="">
+          <h3 class="photo-grid__title">Карачаевск-1</h3>
+          <button class="photo-grid__like"></button>
+        </li>
+        <li class="photo-grid__item">
+          <img class="photo-grid__image" src="./images/kirill-pershin-1088404-unsplash.jpg" alt="">
+          <h3 class="photo-grid__title">Карачаевск-1</h3>
+          <button class="photo-grid__like"></button>
+        </li>
+        <li class="photo-grid__item">
+          <img class="photo-grid__image" src="./images/kirill-pershin-1088404-unsplash.jpg" alt="">
+          <h3 class="photo-grid__title">Карачаевск-1</h3>
+          <button class="photo-grid__like"></button>
+        </li>
+        <li class="photo-grid__item">
+          <img class="photo-grid__image" src="./images/kirill-pershin-1088404-unsplash.jpg" alt="">
+          <h3 class="photo-grid__title">Карачаевск-1</h3>
+          <button class="photo-grid__like"></button>
+        </li>
+      </ul>
+    </section>
+  </main>
+  <footer class="footer">
+    <p class="footer__copyright">&#169; 2023. Дмитрий Макушенко</p>
+  </footer>
+</body>
+</html>

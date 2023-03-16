@@ -1,0 +1,22 @@
+.photo-grid__like {
+  height: 19px;
+  width: 22px;
+  background-image: url(../../../images/like-white.svg);
+  padding: 0;
+  border: none;
+  background-repeat: no-repeat;
+  box-sizing: border-box;
+  background-color: #fff;
+  align-self: end;
+  justify-self: end;
+  margin-bottom: 30px;
+  margin-right: 20px;
+}
+
+.photo-grid__like:hover {
+  opacity: 0.6;
+}
+.photo-grid__like:active{
+  background-image: url(../../../images/like-black.svg);
+  opacity: 1;
+}

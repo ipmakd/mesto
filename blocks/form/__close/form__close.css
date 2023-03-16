@@ -1,0 +1,15 @@
+.form__close {
+  width: 32px;
+  height: 32px;
+  background-image: url(../../../images/Close-Icon.png);
+  background-size: cover;
+  background-color: #00000080;
+  border: none;
+  position: absolute;
+  top: -40px;
+  right: -40px;
+}
+
+.form__close:hover {
+  opacity: 0.6;
+}

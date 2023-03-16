@@ -1,0 +1,9 @@
+.photo-grid__item {
+  min-height: 361px;
+  display: grid;
+  background-color: #fff;
+  border-radius: 10px;
+  grid-template-areas:
+    "image image"
+    "title like";
+}
