@@ -4,6 +4,6 @@
   background-color: #fff;
   border-radius: 10px;
   grid-template-areas:
-    "image image"
-    "title like";
+    "image image image image image"
+    "title title title title like";
 }

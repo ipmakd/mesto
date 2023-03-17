@@ -5,30 +5,32 @@
   width: 100%;
   grid-template-columns: 120px 336px auto;
   grid-template-areas:
-  "photo info add-button";
+  "photo name-edit add-button";
+  row-gap: 8px;
+  column-gap: 30px;
 }
 
 
 @media screen and (max-width: 730px) {
   .profile {
-    width: 100%;
     grid-template-columns: 1fr 1fr;
     grid-template-areas:
-      "photo info"
-      "add-button add-button";
-    row-gap: 20px;
+      "photo name-edit"
+      "photo add-button";
+   
+
   }
 }
 
 
 @media screen and (max-width: 500px) {
   .profile {
-    width: 100%;
     grid-template-columns: 1fr;
     grid-template-areas:
       "photo"
-      "info"
+      "name-edit"
       "add-button";
-    row-gap: 20px;
+    row-gap: 28px;
+    padding-bottom: 36px;
   }
 }

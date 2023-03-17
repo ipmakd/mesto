@@ -1,4 +1,4 @@
-.form__close {
+.popup__close {
   width: 32px;
   height: 32px;
   background-image: url(../../../images/Close-Icon.png);
@@ -10,6 +10,6 @@
   right: -40px;
 }
 
-.form__close:hover {
+.popup__close:hover {
   opacity: 0.6;
 }

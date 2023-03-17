@@ -12,69 +12,71 @@
     <img class="header__logo" src="./images/logo.svg" alt="Логотип проекта Место">
     <div class="header__line"></div>
   </header>
-  <section class="form">
-    <div class="form__container">
-      <button class="form__close"></button>
-      <h2 class="form__title">Редактировать профиль</h2>
-      <div class="form__input-container">
-        <input class="form__input form__input_name" type="text" name="profile__name" placeholder="Жак-Ив Кусто">
-        <div class="form__line"></div>
-        <input class="form__input form__input_job" type="text" name="profile__job" placeholder="Исследователь океана">
-        <div class="form__line"></div>
-        <button class="form__button-save">Сохранить</button>
-      </div>
-     
-    </div>
-  </section>
+  
   <main class="content">
     <section class="profile">
       <img class="profile__photo" src="./images/Kusto.jpg" alt="аватар">
-      <div class="profile__columns">
-        <div class="profile__info">
-          <h1 class="profile__name">Жак-Ив Кусто</h1>
-          <p class="profile__job">Исследователь океана</p>
+      <div class="profile__info"> 
+        <div class="profile__name-edit">
+          <h1 class="profile__name">Жак-Ив Кусто </h1>
+          <button class="profile__edit-button"></button>
         </div>
-        <button class="profile__edit-button"></button>
-      </div>
+        <p class="profile__job">Исследователь океана</p>
+      </div> 
       <button class="profile__add-button"></button>
     </section> 
-     <section class="photo-grid"> 
+    <section class="photo-grid"> 
       <ul class="photo-grid__list">
         <li class="photo-grid__item">
           <img class="photo-grid__image" src="./images/kirill-pershin-1088404-unsplash.jpg" alt="">
-          <h3 class="photo-grid__title">Карачаевск-1</h3>
+          <h3 class="photo-grid__title">Карачаевск</h3>
+          <button class="photo-grid__like"></button>
+        </li>
+        <li class="photo-grid__item">
+          <img class="photo-grid__image" src="./images/kirill-pershin-1404681-unsplash.png" alt="">
+          <h3 class="photo-grid__title">Гора Эльбрус</h3>
+          <button class="photo-grid__like"></button>
+        </li>
+        <li class="photo-grid__item">
+          <img class="photo-grid__image" src="./images/kirill-pershin-1556355-unsplash.png" alt="">
+          <h3 class="photo-grid__title">Домбай</h3>
+          <button class="photo-grid__like"></button>
+        </li>
+        <li class="photo-grid__item">
+          <img class="photo-grid__image" src="./images/kirill-pershin-1404681-unsplash.png" alt="">
+          <h3 class="photo-grid__title">Гора Эльбрус</h3>
+          <button class="photo-grid__like"></button>
+        </li>
+        <li class="photo-grid__item">
+          <img class="photo-grid__image" src="./images/kirill-pershin-1556355-unsplash.png" alt="">
+          <h3 class="photo-grid__title">Домбай</h3>
           <button class="photo-grid__like"></button>
         </li>
         <li class="photo-grid__item">
           <img class="photo-grid__image" src="./images/kirill-pershin-1088404-unsplash.jpg" alt="">
-          <h3 class="photo-grid__title">Карачаевск-1</h3>
-          <button class="photo-grid__like"></button>
-        </li>
-        <li class="photo-grid__item">
-          <img class="photo-grid__image" src="./images/kirill-pershin-1088404-unsplash.jpg" alt="">
-          <h3 class="photo-grid__title">Карачаевск-1</h3>
-          <button class="photo-grid__like"></button>
-        </li>
-        <li class="photo-grid__item">
-          <img class="photo-grid__image" src="./images/kirill-pershin-1088404-unsplash.jpg" alt="">
-          <h3 class="photo-grid__title">Карачаевск-1</h3>
-          <button class="photo-grid__like"></button>
-        </li>
-        <li class="photo-grid__item">
-          <img class="photo-grid__image" src="./images/kirill-pershin-1088404-unsplash.jpg" alt="">
-          <h3 class="photo-grid__title">Карачаевск-1</h3>
-          <button class="photo-grid__like"></button>
-        </li>
-        <li class="photo-grid__item">
-          <img class="photo-grid__image" src="./images/kirill-pershin-1088404-unsplash.jpg" alt="">
-          <h3 class="photo-grid__title">Карачаевск-1</h3>
+          <h3 class="photo-grid__title">Карачаево-Черкесия</h3>
           <button class="photo-grid__like"></button>
         </li>
       </ul>
+    </section>
+    <section class="popup">
+      <div class="popup__container">
+        <button class="popup__close"></button>
+        <h2 class="popup__title">Редактировать профиль</h2>
+        <form class="popup__form">
+          <input class="popup__input popup__input_name" type="text" name="profile__name" placeholder="Жак-Ив Кусто">
+          <div class="popup__line"></div>
+          <input class="popup__input popup__input_job" type="text" name="profile__job" placeholder="Исследователь океана">
+          <div class="popup__line"></div>
+          <button type="submit" class="popup__button-save">Сохранить</button>
+        </form>
+       
+      </div>
     </section>
   </main>
   <footer class="footer">
     <p class="footer__copyright">&#169; 2023. Дмитрий Макушенко</p>
   </footer>
+  <script src="./pages/index.js"></script>
 </body>
 </html>
