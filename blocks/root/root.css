@@ -2,7 +2,7 @@
   max-width: 880px;
   margin: 0 auto;
   background-color: #000000;
-  font-family: Inter;
- color: #FFFFFF;
- min-width: 320px;
+  font-family: 'Inter', 'Arial', sans-serif;
+  color: #FFFFFF;
+  min-width: 320px;
 }

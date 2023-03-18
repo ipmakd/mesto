@@ -14,12 +14,13 @@
 
 @media screen and (max-width: 730px) {
   .profile__add-button {
+    margin-top: 5px;
     justify-self: center;
     width: 282px;
     background-image: url(../../../images/AddButtonL.png);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-color: black;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: black;
   }
 }
 

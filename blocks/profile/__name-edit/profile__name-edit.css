@@ -1,11 +1,8 @@
-.profile__name-edit{
+.profile__name-edit {
   grid-area: name-edit;
-  width: 100%;
   display: flex;
-  justify-content: center;
   align-items: baseline;
 }
-
 
 @media screen and (max-width: 500px) {
   .profile__name-edit {

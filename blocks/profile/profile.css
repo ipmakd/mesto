@@ -3,13 +3,12 @@
   padding-top: 41px;
   padding-bottom: 50px;
   width: 100%;
-  grid-template-columns: 120px 336px auto;
+  grid-template-columns: 120px 1fr auto;
   grid-template-areas:
   "photo name-edit add-button";
   row-gap: 8px;
   column-gap: 30px;
 }
-
 
 @media screen and (max-width: 730px) {
   .profile {
@@ -17,11 +16,8 @@
     grid-template-areas:
       "photo name-edit"
       "photo add-button";
-   
-
   }
 }
-
 
 @media screen and (max-width: 500px) {
   .profile {
@@ -30,7 +26,7 @@
       "photo"
       "name-edit"
       "add-button";
-    row-gap: 28px;
-    padding-bottom: 36px;
+    row-gap: 27px;
+    padding-bottom: 38px;
   }
 }
