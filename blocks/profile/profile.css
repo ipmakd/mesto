@@ -10,9 +10,9 @@
   column-gap: 30px;
 }
 
-@media screen and (max-width: 730px) {
+@media screen and (max-width: 750px) {
   .profile {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 120 1fr;
     grid-template-areas:
       "photo name-edit"
       "photo add-button";

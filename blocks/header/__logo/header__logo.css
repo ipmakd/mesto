@@ -2,6 +2,7 @@
   margin: 0;
   height: 33px;
   width: 142px;
+  padding-bottom: 38px;
 }
 
 
@@ -10,5 +11,7 @@
     height: 24px;
     width: 104px;
     margin-left: 27px;
+    padding-bottom: 28px;
   }
 }
+

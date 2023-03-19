@@ -3,6 +3,7 @@
   min-height: 74px;
   margin: 0 auto;
   padding-top: 44px;
+  border-bottom: 2px solid #545454B3;
 }
 
 @media screen and (max-width: 900px) {
@@ -18,4 +19,3 @@
     width: 100%;
   }
 }
-

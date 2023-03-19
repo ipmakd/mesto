@@ -6,22 +6,25 @@
   align-self: center;
   padding: 0;
   border: none;
-  background-image: url(../../../images/Add_Button.png);
+  background-image: url(../../../images/AddButtonMain.svg);
   background-repeat: no-repeat;
   background-size: cover;
   background-color: black;
   cursor: pointer;
 }
 
-@media screen and (max-width: 730px) {
+@media screen and (max-width: 750px) {
   .profile__add-button {
     margin-top: 5px;
+    justify-self: start;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .profile__add-button {
     justify-self: center;
     width: 282px;
-    background-image: url(../../../images/AddButtonL.png);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-color: black;
+    background-image: url(../../../images/AddButtonMobile.svg);
   }
 }
 
