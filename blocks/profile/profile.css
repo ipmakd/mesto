@@ -10,7 +10,7 @@
   column-gap: 30px;
 }
 
-@media screen and (max-width: 750px) {
+@media screen and (max-width: 800px) {
   .profile {
     grid-template-columns: 120px 1fr;
     grid-template-areas:
@@ -19,7 +19,7 @@
   }
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 550px) {
   .profile {
     grid-template-columns: 1fr;
     grid-template-areas:

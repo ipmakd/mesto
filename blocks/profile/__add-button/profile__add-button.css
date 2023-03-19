@@ -13,14 +13,14 @@
   cursor: pointer;
 }
 
-@media screen and (max-width: 750px) {
+@media screen and (max-width: 800px) {
   .profile__add-button {
     margin-top: 5px;
     justify-self: start;
   }
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 550px) {
   .profile__add-button {
     justify-self: center;
     width: 282px;

@@ -4,7 +4,7 @@
   align-items: baseline;
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 550px) {
   .profile__name-edit {
     margin-left: 24px;
   }
