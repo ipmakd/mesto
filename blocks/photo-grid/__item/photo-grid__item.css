@@ -3,6 +3,7 @@
   display: grid;
   background-color: #fff;
   border-radius: 10px;
+  grid-template-rows: 1fr 79px;
   grid-template-areas:
     "image image image image image"
     "title title title title like";
