@@ -12,12 +12,9 @@
   margin-bottom: 30px;
   margin-right: 20px;
   cursor: pointer;
+  opacity: 1;
 }
 
 .photo-grid__like:hover {
   opacity: 0.5;
-}
-.photo-grid__like:active{
-  background-image: url(../../../images/like-black.svg);
-  opacity: 1;
 }

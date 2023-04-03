@@ -1,13 +1,13 @@
-.popup {
-  background-color: #00000080;
+.popup_image {
   width: 100%;
   height: 100%;
+  background-color: #000000E6;
   position: fixed;
   top: 0;
   left: 0;
   visibility: hidden;
   opacity: 0;
+  transition: visibility 0s, opacity 0.3s linear;
   justify-content: center;
   align-items: center;
-  transition: visibility 0s, opacity 0.3s linear;
 }

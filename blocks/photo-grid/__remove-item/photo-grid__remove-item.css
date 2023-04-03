@@ -1,0 +1,18 @@
+.photo-grid__remove-item {
+  height: 19px;
+  width: 18px;
+  background-image: url(../../../images/Trash.svg);
+  padding: 0;
+  border: none;
+  background-repeat: no-repeat;
+  box-sizing: border-box;
+  background-color: #ffffff00;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+}
+
+.photo-grid__remove-item:hover {
+  opacity: 0.5;
+}
