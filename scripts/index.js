@@ -1,31 +1,30 @@
 const profileName = document.querySelector('.profile__name');
 const profileJob = document.querySelector('.profile__job');
 
-const popupOpen = document.querySelector('.popup');
-const nameInput = popupOpen.querySelector('.popup__input_type_name');
-const jobInput = popupOpen.querySelector('.popup__input_type_job');
+const popupFormUserEditOpen = document.querySelector('.popup_form_user-edit');
+const nameInput = popupFormUserEditOpen.querySelector('.popup__input_type_name');
+const jobInput = popupFormUserEditOpen.querySelector('.popup__input_type_job');
+const popupFormUserEditClosed = popupFormUserEditOpen.querySelector('.popup__close');
+const popupFormUserEdit = popupFormUserEditOpen.querySelector('.popup__form_type_user-edit');
+const userEditButton = document.querySelector('.profile__edit-button');
 
-const editProfile = document.querySelector('.profile__edit-button');
-const popupClose = popupOpen.querySelector('.popup__close');
-
-const popupForm = popupOpen.querySelector('.popup__form');
 const popupFormNewItem = document.querySelector('.popup__form_type_new-item')
 
-
 const popupImageContainerOpen = document.querySelector('.popup_image')
+const popupImageContainerClosed = popupImageContainerOpen.querySelector('.popup__close')
 const popupFullscreenImage = popupImageContainerOpen.querySelector('.popup__fullscreen-image')
 const popupFigcaption = popupImageContainerOpen.querySelector('.popup__figcaption')
 
-
-const popupAddForm = document.querySelector('.popup_new-item-form');
-const popupAddFormClosed = popupAddForm.querySelector('.popup__close')
-
-const createNewItemButton = document.querySelector('.popup__button-new-item-edit')
-
-
+const popupAddImageForm = document.querySelector('.popup_new-item-form');
+const popupAddImageFormClosed = popupAddImageForm.querySelector('.popup__close')
 
 const imageGridList = document.querySelector('.photo-grid__list');
-const addButton = document.querySelector('.profile__add-button')
+const imageAddButton = document.querySelector('.profile__add-button')
+
+const imageLink = document.querySelector('.popup__input_type_new-item-link');
+const imageTitle = document.querySelector('.popup__input_type_new-item-place');
+
+const itemTemplate = document.querySelector('#photo-grid__item').content;
 
 const initialCards = [
   {
@@ -58,86 +57,78 @@ function openPopup (popup) {
   popup.classList.add('popup_opened')
 }
 
-editProfile.addEventListener('click', () =>{
-  openPopup(popupOpen)
+userEditButton.addEventListener('click', () =>{
+  openPopup(popupFormUserEditOpen)
   nameInput.value = profileName.textContent;
   jobInput.value = profileJob.textContent;
 });
-
 
 function closePopup (popup) {
   popup.classList.remove('popup_opened')
 }
 
-
-popupClose.addEventListener('click', () => {
-  closePopup(popupOpen)
+popupFormUserEditClosed.addEventListener('click', () => {
+  closePopup(popupFormUserEditOpen)
 });
  
- 
-function handleFormSubmit (evt) {
+function handleFormUserEditSubmit (evt) {
   evt.preventDefault();
   profileName.textContent =  nameInput.value;
   profileJob.textContent = jobInput.value;
-  closePopup(popupOpen);
+  closePopup(popupFormUserEditOpen);
   }
-  popupForm.addEventListener('submit', handleFormSubmit);
+  popupFormUserEdit.addEventListener('submit', handleFormUserEditSubmit);
 
 
-popupAddFormClosed.addEventListener('click',() => {
-  closePopup(popupAddForm)
+popupAddImageFormClosed.addEventListener('click',() => {
+  closePopup(popupAddImageForm)
 });
 
-addButton.addEventListener('click', () => {
-  openPopup(popupAddForm)
+imageAddButton.addEventListener('click', () => {
+  openPopup(popupAddImageForm)
 });
 
-
-
-initialCards.forEach((elt) =>{
-  const elementt= addImage(elt);
-  imageGridList.append(elementt);
+initialCards.forEach((cardData) =>{
+addImage(cardData);  
 })
 
-function newItemSubmit (event) {
+function handleFormNewItemSubmit (event) {
   event.preventDefault();
-const imageLink = document.querySelector('.popup__input_type_new-item-link');
-const imageTitle = document.querySelector('.popup__input_type_new-item-place');
-const itemValue = {name: imageTitle.value, link: imageLink.value}; 
-initialCards.unshift (itemValue);
-addImage(itemValue)
-popupAddForm.classList.remove('popup_opened');
-}
-popupFormNewItem.addEventListener('submit', newItemSubmit)
+  const itemValue = {name: imageTitle.value, link: imageLink.value}; 
+  addImage(itemValue)
+  closePopup(popupAddImageForm);
+  }
+popupFormNewItem.addEventListener('submit', handleFormNewItemSubmit)
 
-
-function addImage (elt) {
-  const itemTemplate = document.querySelector('#photo-grid__item').content;
+function addImage (cardData) {
+ 
   const itemElement = itemTemplate.querySelector('.photo-grid__item').cloneNode(true);
-  itemElement.querySelector('.photo-grid__image').src = elt.link;
-  itemElement.querySelector('.photo-grid__image').alt = elt.name;
-  itemElement.querySelector('.photo-grid__title').textContent = elt.name;
+  const itemElementImageData = itemElement.querySelector('.photo-grid__image');
+  itemElementImageData.src = cardData.link;
+  itemElementImageData.alt = cardData.name;
+  itemElement.querySelector('.photo-grid__title').textContent = cardData.name;
+  
   itemElement.querySelector ('.photo-grid__like').addEventListener('click', function (evt) {
-  evt.target.classList.toggle('photo-grid__like_active');
-   } )
+    evt.target.classList.toggle('photo-grid__like_active');
+    })
+  
   const deleteButton = itemElement.querySelector('.photo-grid__remove-item');
   deleteButton.addEventListener('click', function () {
   const deleteItem = deleteButton.closest('.photo-grid__item');
   deleteItem.remove();
   }); 
-  itemElement.querySelector('.photo-grid__image').addEventListener('click', function() { //пустой попа открывапется надо его заполнить и починить кнопку закртыия здесь и в другом попапе
-    popupImageContainerOpen.classList.add('popup_opened');
-    popupFullscreenImage.src = elt.link;
-    popupFullscreenImage.alt = elt.name;
-    popupFigcaption.textContent = elt.name;
+  
+  itemElementImageData.addEventListener('click', function() { 
+    openPopup(popupImageContainerOpen);
 
-const popupImageContainerClosed = popupImageContainerOpen.querySelector('.popup__close')
-  popupImageContainerClosed.addEventListener('click',() => {
-  popupImageContainerOpen.classList.remove('popup_opened') 
-  });
+    popupFullscreenImage.src = cardData.link;
+    popupFullscreenImage.alt = cardData.name;
+    popupFigcaption.textContent = cardData.name;
   })
   imageGridList.prepend(itemElement);
 }
 
-
+popupImageContainerClosed.addEventListener('click',() => {
+  closePopup(popupImageContainerOpen);
+  });
 
