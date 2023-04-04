@@ -35,7 +35,7 @@ const imageAddButton = document.querySelector(".profile__add-button");
 const imageLink = document.querySelector(".popup__input_type_new-item-link");
 const imageTitle = document.querySelector(".popup__input_type_new-item-place");
 
-const itemTemplate = document.querySelector("#photo-grid__item").content;
+const itemTemplate = document.querySelector("#photo-grid__item");
 
 function openPopup(popup) {
   popup.classList.add("popup_opened");
@@ -79,7 +79,7 @@ function handleFormNewItemSubmit(event) {
 popupFormNewItem.addEventListener("submit", handleFormNewItemSubmit);
 
 function addImage(cardData) {
-  const itemElement = itemTemplate
+  const itemElement = itemTemplate.content
     .querySelector(".photo-grid__item")
     .cloneNode(true);
   const itemElementImageData = itemElement.querySelector(".photo-grid__image");
