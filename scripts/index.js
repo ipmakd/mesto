@@ -45,6 +45,7 @@ userEditButton.addEventListener("click", () => {
   openPopup(popupFormUserEditOpen);
   nameInput.value = profileName.textContent;
   jobInput.value = profileJob.textContent;
+  closeOverlay(popupFormUserEditOpen);
 });
 
 function closePopup(popup) {
@@ -59,6 +60,7 @@ function handleFormUserEditSubmit(evt) {
   evt.preventDefault();
   profileName.textContent = nameInput.value;
   profileJob.textContent = jobInput.value;
+  closeOverlay(popupFormUserEditOpen);
   closePopup(popupFormUserEditOpen);
 }
 popupFormUserEdit.addEventListener("submit", handleFormUserEditSubmit);
@@ -68,6 +70,7 @@ popupAddImageFormClosed.addEventListener("click", () => {
 
 imageAddButton.addEventListener("click", () => {
   openPopup(popupAddImageForm);
+  closeOverlay(popupAddImageForm);
 });
 
 function handleFormNewItemSubmit(event) {
@@ -105,6 +108,7 @@ function addImage(cardData) {
     popupFullscreenImage.src = cardData.link;
     popupFullscreenImage.alt = cardData.name;
     popupFigcaption.textContent = cardData.name;
+    closeOverlay(popupImageContainerOpen);
   });
   return itemElement;
 }
@@ -121,3 +125,10 @@ initialCards.forEach((cardData) => {
 popupImageContainerClosed.addEventListener("click", () => {
   closePopup(popupImageContainerOpen);
 });
+
+function closeOverlay(form) {
+  const popupOverlayClose = form.querySelector(".popup__overlay");
+  popupOverlayClose.addEventListener("click", () => {
+    closePopup(form);
+  });
+}

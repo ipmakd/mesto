@@ -40,19 +40,21 @@
       <p class="footer__copyright">&#169; 2020 Mesto Russia</p>
     </footer>
     <section class="popup popup_form_user-edit">
+      <div class="popup__overlay"></div>
       <div class="popup__container">
         <button class="popup__close" type="button"></button>
         <h2 class="popup__title">Редактировать профиль</h2>
         <form class="popup__form popup__form_type_user-edit" name="name" novalidate>
           <input id="name-input" class="popup__input popup__input_type_name" type="text" name="profile__name" required placeholder="Жак-Ив Кусто" minlength="2" maxlength="40">
-          <span class="name-input-error popup__input_type_error"></span>
+          <span class="name-input-error "></span>
           <input id="job-input" class="popup__input popup__input_type_job" type="text" name="profile__job" required placeholder="Исследователь океана" minlength="2" maxlength="200">
-          <span class="job-input-error popup__input_type_error"></span>
+          <span class="job-input-error "></span>
           <button type="submit" class="popup__button">Сохранить</button>
         </form>
       </div>
     </section>
     <section class="popup popup_new-item-form">
+      <div class="popup__overlay"></div>
       <div class="popup__container">
         <button class="popup__close" type="button"></button>
         <h2 class="popup__title popup__title_type_new-item-form">Новое место</h2>
@@ -66,6 +68,7 @@
       </div>
     </section>
     <section class="popup popup_image" aria-label="увеличение картинки">
+      <div class="popup__overlay"></div>
       <div class="popup__image-container">
         <figure class="popup__figure">
           <img class="popup__fullscreen-image" src="#" alt="#">
