@@ -45,8 +45,8 @@ userEditButton.addEventListener("click", () => {
   openPopup(popupFormUserEditOpen);
   nameInput.value = profileName.textContent;
   jobInput.value = profileJob.textContent;
-  closePopupEsc(popupFormUserEditOpen);
-  closeOverlay(popupFormUserEditOpen);
+  closePopupPressEsc(popupFormUserEditOpen);
+  closePopupClickOverlay(popupFormUserEditOpen);
 });
 
 function closePopup(popup) {
@@ -61,8 +61,6 @@ function handleFormUserEditSubmit(evt) {
   evt.preventDefault();
   profileName.textContent = nameInput.value;
   profileJob.textContent = jobInput.value;
-  // closeOverlay(popupFormUserEditOpen);
-  // closePopupEsc(popupFormUserEditOpen);
   closePopup(popupFormUserEditOpen);
 }
 popupFormUserEdit.addEventListener("submit", handleFormUserEditSubmit);
@@ -72,8 +70,8 @@ popupAddImageFormClosed.addEventListener("click", () => {
 
 imageAddButton.addEventListener("click", () => {
   openPopup(popupAddImageForm);
-  closeOverlay(popupAddImageForm);
-  closePopupEsc(popupAddImageForm);
+  closePopupClickOverlay(popupAddImageForm);
+  closePopupPressEsc(popupAddImageForm);
 });
 
 function handleFormNewItemSubmit(event) {
@@ -111,8 +109,8 @@ function addImage(cardData) {
     popupFullscreenImage.src = cardData.link;
     popupFullscreenImage.alt = cardData.name;
     popupFigcaption.textContent = cardData.name;
-    closeOverlay(popupImageContainerOpen);
-    closePopupEsc(popupImageContainerOpen);
+    closePopupClickOverlay(popupImageContainerOpen);
+    closePopupPressEsc(popupImageContainerOpen);
   });
   return itemElement;
 }
@@ -130,18 +128,18 @@ popupImageContainerClosed.addEventListener("click", () => {
   closePopup(popupImageContainerOpen);
 });
 
-function closeOverlay(form) {
+// функция закрытия по клику на оверлей
+function closePopupClickOverlay(form) {
   const popupOverlayClose = form.querySelector(".popup__overlay");
   popupOverlayClose.addEventListener("click", () => {
     closePopup(form);
   });
 }
 
-// не работает закрытие по эскейпу/ создал функцию на ивент нажатия по кейкоду 27 теперь надо добавить слушатель во все попапы
-function closePopupEsc(form) {
+// функция закрытия по нажатию ESC
+function closePopupPressEsc(form) {
   document.addEventListener("keydown", (evt) => {
     if (evt.key === "Escape") {
-      console.log(evt.key);
       closePopup(form);
     }
   });
