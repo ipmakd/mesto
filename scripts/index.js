@@ -22,7 +22,7 @@ const popupImageContainerClosed =
 const popupFullscreenImage = popupImageContainerOpen.querySelector(
   ".popup__fullscreen-image"
 );
-const popupFigcaption =
+const popupFullscreenImageCaption =
   popupImageContainerOpen.querySelector(".popup__figcaption");
 
 const popupAddImageForm = document.querySelector(".popup_new-item-form");
@@ -32,13 +32,18 @@ const popupAddImageFormClosed =
 const imageGridList = document.querySelector(".photo-grid__list");
 const imageAddButton = document.querySelector(".profile__add-button");
 
-const imageLink = document.querySelector(".popup__input_type_new-item-link");
-const imageTitle = document.querySelector(".popup__input_type_new-item-place");
+const inputLinkFormAddNewCard = document.querySelector(
+  ".popup__input_type_new-item-link"
+);
+const inputTitleFormAddNewCard = document.querySelector(
+  ".popup__input_type_new-item-place"
+);
 
 const itemTemplate = document.querySelector("#photo-grid__item");
 
 function openPopup(popup) {
   popup.classList.add("popup_opened");
+  document.addEventListener("keydown", closePopupPressEsc);
 }
 
 userEditButton.addEventListener("click", () => {
@@ -51,6 +56,7 @@ userEditButton.addEventListener("click", () => {
 
 function closePopup(popup) {
   popup.classList.remove("popup_opened");
+  document.removeEventListener("keydown", closePopupPressEsc);
 }
 
 popupFormUserEditClosed.addEventListener("click", () => {
@@ -76,7 +82,10 @@ imageAddButton.addEventListener("click", () => {
 
 function handleFormNewItemSubmit(event) {
   event.preventDefault();
-  const itemValue = { name: imageTitle.value, link: imageLink.value };
+  const itemValue = {
+    name: inputTitleFormAddNewCard.value,
+    link: inputLinkFormAddNewCard.value,
+  };
   renderImageElement(addImage(itemValue));
   closePopup(popupAddImageForm);
 }
@@ -108,7 +117,7 @@ function addImage(cardData) {
 
     popupFullscreenImage.src = cardData.link;
     popupFullscreenImage.alt = cardData.name;
-    popupFigcaption.textContent = cardData.name;
+    popupFullscreenImageCaption.textContent = cardData.name;
     closePopupClickOverlay(popupImageContainerOpen);
     closePopupPressEsc(popupImageContainerOpen);
   });
@@ -137,10 +146,9 @@ function closePopupClickOverlay(form) {
 }
 
 // функция закрытия по нажатию ESC
-function closePopupPressEsc(form) {
-  document.addEventListener("keydown", (evt) => {
-    if (evt.key === "Escape") {
-      closePopup(form);
-    }
-  });
+function closePopupPressEsc(evt) {
+  if (evt.key === "Escape") {
+    const popup = document.querySelector(".popup_opened");
+    closePopup(popup);
+  }
 }
