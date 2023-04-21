@@ -42,14 +42,22 @@ const inputTitleFormAddNewCard = document.querySelector(
 
 const itemTemplate = document.querySelector("#photo-grid__item");
 
+const popups = document.querySelectorAll(".popup");
+popups.forEach((popup) => {
+  popup.addEventListener("click", (evt) => {
+    if (
+      evt.target.classList.contains("popup") ||
+      evt.target.classList.contains("popup__close")
+    ) {
+      closePopup(popup);
+    }
+  });
+});
+
 function openPopup(popup) {
   popup.classList.add("popup_opened");
 
   document.addEventListener("keydown", closePopupPressEsc);
-  const popupOverlayClose = popup.querySelector(".popup__overlay");
-  popupOverlayClose.addEventListener("click", () => {
-    closePopup(popup);
-  });
 }
 
 function resetForm(form) {
