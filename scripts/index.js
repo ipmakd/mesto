@@ -3,6 +3,7 @@ const profileName = document.querySelector(".profile__name");
 const profileJob = document.querySelector(".profile__job");
 
 const popupFormUserEditOpen = document.querySelector(".popup_form_user-edit");
+const formUserEdit = document.querySelector(".popup__form_type_user-edit");
 const nameInput = popupFormUserEditOpen.querySelector(
   ".popup__input_type_name"
 );
@@ -43,16 +44,41 @@ const itemTemplate = document.querySelector("#photo-grid__item");
 
 function openPopup(popup) {
   popup.classList.add("popup_opened");
+
   document.addEventListener("keydown", closePopupPressEsc);
+  const popupOverlayClose = popup.querySelector(".popup__overlay");
+  popupOverlayClose.addEventListener("click", () => {
+    closePopup(popup);
+  });
 }
 
-userEditButton.addEventListener("click", () => {
+function resetForm(form) {
+  form.reset();
+  const buttonSubmitForm = form.querySelector(".popup__button");
+  buttonSubmitForm.disabled = true;
+  buttonSubmitForm.classList.add("popup__button_disabled");
+
+  const errorClass = Array.from(form.querySelectorAll(".popup__error_visible"));
+  errorClass.forEach((error) => {
+    error.classList.remove("popup__error_visible");
+  });
+
+  const inputErrorClass = Array.from(
+    form.querySelectorAll(".popup__input_type_error")
+  );
+  inputErrorClass.forEach((error) => {
+    error.classList.remove("popup__input_type_error");
+  });
+}
+
+function editUserData() {
   openPopup(popupFormUserEditOpen);
+  resetForm(formUserEdit);
   nameInput.value = profileName.textContent;
   jobInput.value = profileJob.textContent;
-  closePopupPressEsc(popupFormUserEditOpen);
-  closePopupClickOverlay(popupFormUserEditOpen);
-});
+}
+
+userEditButton.addEventListener("click", editUserData);
 
 function closePopup(popup) {
   popup.classList.remove("popup_opened");
@@ -70,14 +96,14 @@ function handleFormUserEditSubmit(evt) {
   closePopup(popupFormUserEditOpen);
 }
 popupFormUserEdit.addEventListener("submit", handleFormUserEditSubmit);
+
 popupAddImageFormClosed.addEventListener("click", () => {
   closePopup(popupAddImageForm);
 });
 
 imageAddButton.addEventListener("click", () => {
   openPopup(popupAddImageForm);
-  closePopupClickOverlay(popupAddImageForm);
-  closePopupPressEsc(popupAddImageForm);
+  resetForm(popupFormNewItem);
 });
 
 function handleFormNewItemSubmit(event) {
@@ -114,12 +140,9 @@ function addImage(cardData) {
 
   itemElementImageData.addEventListener("click", function () {
     openPopup(popupImageContainerOpen);
-
     popupFullscreenImage.src = cardData.link;
     popupFullscreenImage.alt = cardData.name;
     popupFullscreenImageCaption.textContent = cardData.name;
-    closePopupClickOverlay(popupImageContainerOpen);
-    closePopupPressEsc(popupImageContainerOpen);
   });
   return itemElement;
 }
@@ -137,15 +160,6 @@ popupImageContainerClosed.addEventListener("click", () => {
   closePopup(popupImageContainerOpen);
 });
 
-// функция закрытия по клику на оверлей
-function closePopupClickOverlay(form) {
-  const popupOverlayClose = form.querySelector(".popup__overlay");
-  popupOverlayClose.addEventListener("click", () => {
-    closePopup(form);
-  });
-}
-
-// функция закрытия по нажатию ESC
 function closePopupPressEsc(evt) {
   if (evt.key === "Escape") {
     const popup = document.querySelector(".popup_opened");
