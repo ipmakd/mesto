@@ -18,8 +18,7 @@ export default class FormValidator {
     );
     this._toggleButtonState(inputList, buttonElement);
     inputList.forEach((inputElement) => {
-      inputElement.addEventListener("input", function () {
-        console.log(typeof this._checkInputValidity());
+      inputElement.addEventListener("input", () => {
         this._checkInputValidity(inputElement);
         this._toggleButtonState(inputList, buttonElement);
       });
@@ -46,7 +45,6 @@ export default class FormValidator {
 
   // определение отображения ошибки
   _checkInputValidity(inputElement) {
-    console.log(typeof this._checkInputValidity());
     if (!inputElement.validity.valid) {
       this._showInputError(inputElement);
     } else {
