@@ -1,5 +1,4 @@
-import { initialCards } from "./constants.js";
-import validationConfig from "./validationConfig.js";
+import { initialCards, validationConfig } from "./constants.js";
 import Card from "./card.js";
 import FormValidator from "./FormValidator.js";
 
@@ -7,7 +6,7 @@ const profileName = document.querySelector(".profile__name");
 const profileJob = document.querySelector(".profile__job");
 
 const popupFormUserEditOpen = document.querySelector(".popup_form_user-edit");
-const formUserEdit = document.querySelector(".popup__form_type_user-edit");
+
 const nameInput = popupFormUserEditOpen.querySelector(
   ".popup__input_type_name"
 );
@@ -44,7 +43,7 @@ const inputTitleFormAddNewCard = document.querySelector(
   ".popup__input_type_new-item-place"
 );
 
-const itemTemplate = document.querySelector("#photo-grid__item");
+let templateSelector = "#photo-grid__item";
 
 const popups = document.querySelectorAll(".popup");
 
@@ -65,28 +64,9 @@ function openPopup(popup) {
   document.addEventListener("keydown", closePopupPressEsc);
 }
 
-function resetForm(form) {
-  form.reset();
-  const buttonSubmitForm = form.querySelector(".popup__button");
-  buttonSubmitForm.disabled = true;
-  buttonSubmitForm.classList.add("popup__button_disabled");
-
-  const errorClass = Array.from(form.querySelectorAll(".popup__error_visible"));
-  errorClass.forEach((error) => {
-    error.classList.remove("popup__error_visible");
-  });
-
-  const inputErrorClass = Array.from(
-    form.querySelectorAll(".popup__input_type_error")
-  );
-  inputErrorClass.forEach((error) => {
-    error.classList.remove("popup__input_type_error");
-  });
-}
-
 function editUserData() {
   openPopup(popupFormUserEditOpen);
-  resetForm(formUserEdit);
+  formUserEditValidation.resetValidationState();
   nameInput.value = profileName.textContent;
   jobInput.value = profileJob.textContent;
 }
@@ -116,7 +96,7 @@ popupAddImageFormClosed.addEventListener("click", () => {
 
 imageAddButton.addEventListener("click", () => {
   openPopup(popupAddImageForm);
-  resetForm(popupFormNewItem);
+  popupAddImageFormValidation.resetValidationState();
 });
 
 function handleFormNewItemSubmit(event) {
@@ -125,10 +105,7 @@ function handleFormNewItemSubmit(event) {
     name: inputTitleFormAddNewCard.value,
     link: inputLinkFormAddNewCard.value,
   };
-  const newCard = new Card(itemValue);
-  const newCardElement = newCard.generateCard();
-
-  renderImageElement(newCardElement);
+  createCard(itemValue);
   closePopup(popupAddImageForm);
 }
 popupFormNewItem.addEventListener("submit", handleFormNewItemSubmit);
@@ -138,14 +115,18 @@ const renderImageElement = (itemElement) => {
 };
 
 initialCards.forEach((cardData) => {
-  const card = new Card(cardData);
-  const cardElement = card.generateCard();
-  renderImageElement(cardElement);
+  createCard(cardData);
 });
 
 popupImageContainerClosed.addEventListener("click", () => {
   closePopup(popupImageContainerOpen);
 });
+
+function createCard(data) {
+  const card = new Card(data);
+  const cardElement = card.generateCard();
+  renderImageElement(cardElement);
+}
 
 function closePopupPressEsc(evt) {
   if (evt.key === "Escape") {
@@ -154,10 +135,10 @@ function closePopupPressEsc(evt) {
   }
 }
 
-const formUserEdits = document.querySelector(".popup__form_type_user-edit");
+const formUserEdit = document.querySelector(".popup__form_type_user-edit");
 const formUserEditValidation = new FormValidator(
   validationConfig,
-  formUserEdits
+  formUserEdit
 );
 formUserEditValidation.enableValidations();
 
@@ -169,7 +150,7 @@ const popupAddImageFormValidation = new FormValidator(
 popupAddImageFormValidation.enableValidations();
 
 export {
-  itemTemplate,
+  templateSelector,
   popupFullscreenImage,
   popupFullscreenImageCaption,
   openPopup,

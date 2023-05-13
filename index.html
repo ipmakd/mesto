@@ -17,11 +17,11 @@
         <div class="profile__info">
           <div class="profile__name-edit">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
-            <button class="profile__edit-button" type="button"></button>
+            <button class="profile__edit-button" aria-label="редактировать профиль" type="button"></button>
           </div>
           <p class="profile__job">Исследователь океана</p>
         </div>
-        <button class="profile__add-button" type="button"></button>
+        <button class="profile__add-button" aria-label="добавить картинку" type="button"></button>
       </section>
       <section class="photo-grid" aria-label="сетка фотографий">
         <ul class="photo-grid__list">
@@ -29,8 +29,8 @@
             <li class="photo-grid__item">
               <img class="photo-grid__image" src="#" alt="храм у подножия гор">
               <h2 class="photo-grid__title"></h2>
-              <button class="photo-grid__like" type="button"></button>
-              <button class="photo-grid__remove-item" type="button"></button>
+              <button class="photo-grid__like" aria-label="лайк" type="button"></button>
+              <button class="photo-grid__remove-item" aria-label="удалить картинку" type="button"></button>
             </li>
           </template>
         </ul>
@@ -41,12 +41,12 @@
     </footer>
     <section class="popup popup_form_user-edit">
       <div class="popup__container">
-        <button class="popup__close" type="button"></button>
+        <button class="popup__close" aria-label="закрыть окно" type="button"></button>
         <h2 class="popup__title">Редактировать профиль</h2>
         <form class="popup__form popup__form_type_user-edit" name="name" novalidate>
-          <input id="name-input" class="popup__input popup__input_type_name" type="text" name="profile__name" required placeholder="Жак-Ив Кусто" minlength="2" maxlength="40">
+          <input id="name-input" class="popup__input popup__input_type_name" type="text" name="profile__name" required placeholder="Имя" minlength="2" maxlength="40">
           <span class="name-input-error popup__span-error"></span>
-          <input id="job-input" class="popup__input popup__input_type_job" type="text" name="profile__job" required placeholder="Исследователь океана" minlength="2" maxlength="200">
+          <input id="job-input" class="popup__input popup__input_type_job" type="text" name="profile__job" required placeholder="О себе" minlength="2" maxlength="200">
           <span class="job-input-error popup__span-error"></span>
           <button type="submit" class="popup__button popup__button-user-edit">Сохранить</button>
         </form>
@@ -54,12 +54,12 @@
     </section>
     <section class="popup popup_new-item-form">
       <div class="popup__container">
-        <button class="popup__close" type="button"></button>
+        <button class="popup__close" aria-label="закрыть окно" type="button"></button>
         <h2 class="popup__title popup__title_type_new-item-form">Новое место</h2>
         <form class="popup__form popup__form_type_new-item" name="name" novalidate>
           <input id="new-item-place-input" class="popup__input popup__input_type_new-item-place" type="text" name="place__name" placeholder="Название" required minlength="2" maxlength="30">
           <span class="new-item-place-input-error popup__span-error"></span>
-          <input id="new-item-link-input" class="popup__input popup__input_type_new-item-link" type="url" name="place__link" placeholder="Ссылка на картинку" minlength="2" required>
+          <input id="new-item-link-input" class="popup__input popup__input_type_new-item-link" type="url" name="place__link" placeholder="Ссылка на картинку" required>
           <span class="new-item-link-input-error popup__span-error"></span>
           <button type="submit" class="popup__button popup__button-new-item-edit">Создать</button>
         </form>
@@ -71,10 +71,9 @@
           <img class="popup__fullscreen-image" src="#" alt="#">
           <figcaption class="popup__figcaption"></figcaption>
         </figure>
-        <button class="popup__close" type="button"></button>
+        <button class="popup__close" aria-label="закрыть окно" type="button"></button>
       </div>
     </section>
     <script src="./scripts/index.js" type="module"></script>
-    <script src="./scripts/validate.js" type="module"></script>
   </body>
 </html>
