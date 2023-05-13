@@ -123,7 +123,7 @@ popupImageContainerClosed.addEventListener("click", () => {
 });
 
 function createCard(data) {
-  const card = new Card(data);
+  const card = new Card(data, "#photo-grid__item");
   const cardElement = card.generateCard();
   renderImageElement(cardElement);
 }
@@ -150,7 +150,6 @@ const popupAddImageFormValidation = new FormValidator(
 popupAddImageFormValidation.enableValidations();
 
 export {
-  templateSelector,
   popupFullscreenImage,
   popupFullscreenImageCaption,
   openPopup,

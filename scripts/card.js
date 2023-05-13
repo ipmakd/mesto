@@ -1,5 +1,4 @@
 import {
-  templateSelector,
   popupFullscreenImage,
   popupFullscreenImageCaption,
   openPopup,
@@ -7,15 +6,15 @@ import {
 } from "./index.js";
 
 export default class Card {
-  constructor(cardData) {
+  constructor(cardData, templateSelector) {
     this._link = cardData.link;
     this._alt = cardData.name;
     this._name = cardData.name;
+    this._template = document.querySelector(templateSelector);
   }
   _getTemplate() {
-    const itemElement = document
-      .querySelector(templateSelector)
-      .content.querySelector(".photo-grid__item")
+    const itemElement = this._template.content
+      .querySelector(".photo-grid__item")
       .cloneNode(true);
     return itemElement;
   }

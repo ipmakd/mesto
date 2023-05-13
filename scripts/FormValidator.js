@@ -8,20 +8,20 @@ export default class FormValidator {
     this._errorClass = config.errorClass;
 
     this._formElement = formElement;
-    this.inputList = Array.from(
+    this._inputList = Array.from(
       this._formElement.querySelectorAll(this._inputSelector)
     );
-    this.buttonElement = this._formElement.querySelector(
+    this._buttonElement = this._formElement.querySelector(
       this._submitButtonSelector
     );
   }
 
   _setEventListener() {
-    this._toggleButtonState(this.inputList, this.buttonElement);
-    this.inputList.forEach((inputElement) => {
+    this._toggleButtonState(this._inputList, this._buttonElement);
+    this._inputList.forEach((inputElement) => {
       inputElement.addEventListener("input", () => {
         this._checkInputValidity(inputElement);
-        this._toggleButtonState(this.inputList, this.buttonElement);
+        this._toggleButtonState(this._inputList, this._buttonElement);
       });
     });
   }
@@ -54,33 +54,33 @@ export default class FormValidator {
   }
   //проверка валидности поля
   _hasInvalidInput() {
-    return this.inputList.some((inputElement) => {
+    return this._inputList.some((inputElement) => {
       return !inputElement.validity.valid;
     });
   }
 
   // кнопка сабмита активна
   _enableButton() {
-    this.buttonElement.classList.remove(this._inactiveButtonClass);
-    this.buttonElement.removeAttribute("disabled");
+    this._buttonElement.classList.remove(this._inactiveButtonClass);
+    this._buttonElement.removeAttribute("disabled");
   }
   // кнопка сабмита неактивна
   _disableButton() {
-    this.buttonElement.classList.add(this._inactiveButtonClass);
-    this.buttonElement.setAttribute("disabled", "");
+    this._buttonElement.classList.add(this._inactiveButtonClass);
+    this._buttonElement.setAttribute("disabled", "");
   }
   //назначение статуса кнопки в зависимости от валидности
   _toggleButtonState() {
-    if (this._hasInvalidInput(this.inputList)) {
-      this._disableButton(this.buttonElement);
+    if (this._hasInvalidInput(this._inputList)) {
+      this._disableButton(this._buttonElement);
     } else {
-      this._enableButton(this.buttonElement);
+      this._enableButton(this._buttonElement);
     }
   }
   // публичный метод обнуления формы
   resetValidationState() {
-    this._disableButton(this.buttonElement);
-    this.inputList.forEach((inputElement) => {
+    this._disableButton(this._buttonElement);
+    this._inputList.forEach((inputElement) => {
       this._hideInputError(inputElement);
     });
   }
