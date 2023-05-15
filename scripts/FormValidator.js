@@ -17,11 +17,11 @@ export default class FormValidator {
   }
 
   _setEventListener() {
-    this._toggleButtonState(this._inputList, this._buttonElement);
+    this._toggleButtonState();
     this._inputList.forEach((inputElement) => {
       inputElement.addEventListener("input", () => {
         this._checkInputValidity(inputElement);
-        this._toggleButtonState(this._inputList, this._buttonElement);
+        this._toggleButtonState();
       });
     });
   }
@@ -72,14 +72,14 @@ export default class FormValidator {
   //назначение статуса кнопки в зависимости от валидности
   _toggleButtonState() {
     if (this._hasInvalidInput(this._inputList)) {
-      this._disableButton(this._buttonElement);
+      this._disableButton();
     } else {
-      this._enableButton(this._buttonElement);
+      this._enableButton();
     }
   }
   // публичный метод обнуления формы
   resetValidationState() {
-    this._disableButton(this._buttonElement);
+    this._disableButton();
     this._inputList.forEach((inputElement) => {
       this._hideInputError(inputElement);
     });
