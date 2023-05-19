@@ -1,16 +1,17 @@
-import {
-  popupFullscreenImage,
-  popupFullscreenImageCaption,
-  openPopup,
-  popupImageContainerOpen,
-} from "./index.js";
+// import {
+//   popupFullscreenImage,
+//   popupFullscreenImageCaption,
+//   openPopup,
+//   popupImageContainerOpen,
+// } from "./index.js";
 
 export default class Card {
-  constructor(cardData, templateSelector) {
+  constructor(cardData, templateSelector /*, handleCardClick*/) {
     this._link = cardData.link;
     this._alt = cardData.name;
     this._name = cardData.name;
     this._template = document.querySelector(templateSelector);
+    // this.handleCardClick = handleCardClick;
   }
   _getTemplate() {
     const itemElement = this._template.content
