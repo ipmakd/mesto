@@ -4,17 +4,17 @@ export default class Popup {
   }
   open() {
     this._popup.classList.add("popup_opened");
-    this.addEventListener("keydown", this._handleEscClose(evt));
   }
   close() {
     this._popup.classList.remove("popup_opened");
-    this.removeEventListener("keydown", this._handleEscClose(evt));
   }
 
-  _handleEscClose(evt) {
-    if (evt.key === "Escape") {
-      this._popup.close;
-    }
+  _handleEscClose() {
+    document.addEventListener("keydown", (evt) => {
+      if (evt.key === "Escape") {
+        this.close();
+      }
+    });
   }
 
   setEventListeners() {
@@ -23,9 +23,10 @@ export default class Popup {
         evt.target.classList.contains("popup") ||
         evt.target.classList.contains("popup__close")
       ) {
-        this._popup.close;
+        this.close();
       }
     });
+    this._handleEscClose();
   }
 }
 // Создайте класс Popup

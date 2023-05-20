@@ -1,17 +1,10 @@
-// import {
-//   popupFullscreenImage,
-//   popupFullscreenImageCaption,
-//   openPopup,
-//   popupImageContainerOpen,
-// } from "./index.js";
-
 export default class Card {
-  constructor(cardData, templateSelector /*, handleCardClick*/) {
+  constructor(cardData, templateSelector, handleCardClick) {
     this._link = cardData.link;
     this._alt = cardData.name;
     this._name = cardData.name;
     this._template = document.querySelector(templateSelector);
-    // this.handleCardClick = handleCardClick;
+    this._handleCardClick = handleCardClick;
   }
   _getTemplate() {
     const itemElement = this._template.content
@@ -42,7 +35,7 @@ export default class Card {
         this._deleteItem();
       });
     this._image.addEventListener("click", () => {
-      this._popupFullScreenImage();
+      this._handleCardClick();
     });
   }
 
@@ -52,12 +45,5 @@ export default class Card {
 
   _deleteItem() {
     this._element.remove();
-  }
-
-  _popupFullScreenImage() {
-    openPopup(popupImageContainerOpen);
-    popupFullscreenImage.src = this._link;
-    popupFullscreenImage.alt = this._name;
-    popupFullscreenImageCaption.textContent = this._name;
   }
 }
