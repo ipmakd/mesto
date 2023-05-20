@@ -3,11 +3,6 @@ import Popup from "./popup.js";
 export default class PopupWithForm extends Popup {
   constructor(selectorPopup) {
     super(selectorPopup);
-    // this._name = itemValue.name;
-    // this._description = itemValue.description;
-    // this._link = itemValue.link;
-    this.profileName = document.querySelector(".profile__name");
-    this.profileJob = document.querySelector(".profile__job");
   }
 
   close() {}
@@ -28,9 +23,6 @@ export default class PopupWithForm extends Popup {
       evt.preventDefault();
       console.log(this.profileJob);
       console.log(this._name);
-      this.profileName.textContent = this._name;
-      this.profileJob.textContent = this._description;
-      this.close();
     });
   }
 }
@@ -41,3 +33,12 @@ export default class PopupWithForm extends Popup {
 // Метод setEventListeners класса PopupWithForm должен не только добавлять обработчик клика иконке закрытия, но и добавлять обработчик сабмита формы.
 // Перезаписывает родительский метод close, так как при закрытии попапа форма должна ещё и сбрасываться.
 // Для каждого попапа создавайте свой экземпляр класса PopupWithForm.
+
+// класс PopupWithForm:
+
+// наследуется от Popup, вызывает его конструктор, в который передает нужный параметр.
+// При этом принимает еще и второй параметр - колбэк сабмита формы.
+// Создаем два экземпляра этого класса, в каждый передаем свой коллебек (помимо селектора попапа).
+//  В одном случае форма редактирует данные пользователя на странице, во втором - добавляет новую карточку.
+//   В качестве идеи - попробуйте совместить функцию коллбека при сабмите формы добавления карточки
+//    с аргументом renderer у класса Section

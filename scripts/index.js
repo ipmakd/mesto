@@ -4,6 +4,7 @@ import FormValidator from "./FormValidator.js";
 import Section from "./section.js";
 import PopupWithImage from "./popupWithImage.js";
 import Popup from "./popup.js";
+import UserInfo from "./userInfo.js";
 
 const profileName = document.querySelector(".profile__name");
 const profileJob = document.querySelector(".profile__job");
@@ -17,12 +18,6 @@ const popupFormUserEdit = popupFormUserEditOpen.querySelector(
 );
 const userEditButton = document.querySelector(".profile__edit-button");
 const popupFormNewItem = document.querySelector(".popup__form_type_new-item");
-const popupImageContainerOpen = document.querySelector(".popup_image");
-const popupFullscreenImage = popupImageContainerOpen.querySelector(
-  ".popup__fullscreen-image"
-);
-const popupFullscreenImageCaption =
-  popupImageContainerOpen.querySelector(".popup__figcaption");
 const popupAddImageForm = document.querySelector(".popup_new-item-form");
 const imageGridList = document.querySelector(".photo-grid__list");
 const imageAddButton = document.querySelector(".profile__add-button");
@@ -32,44 +27,77 @@ const inputLinkFormAddNewCard = document.querySelector(
 const inputTitleFormAddNewCard = document.querySelector(
   ".popup__input_type_new-item-place"
 );
-const popups = document.querySelectorAll(".popup");
 
 function editUserData() {
   const popupFormUserEditOpened = new Popup(".popup_form_user-edit");
   popupFormUserEditOpened.open();
   popupFormUserEditOpened.setEventListeners();
   formUserEditValidation.resetValidationState();
-  nameInput.value = profileName.textContent;
-  jobInput.value = profileJob.textContent;
+  const userInfoValue = new UserInfo(
+    ".popup__input_type_name",
+    ".popup__input_type_job"
+  );
+  userInfoValue.getUserInfo();
+  popupFormUserEdit.addEventListener("submit", (evt) => {
+    evt.preventDefault();
+    userInfoValue.setUserInfo();
+    popupFormUserEditOpened.close();
+  });
 }
 // открытие попапа редактирования профиля по кнопке userEditButton
 userEditButton.addEventListener("click", editUserData);
 
-function handleFormUserEditSubmit(evt) {
-  evt.preventDefault();
-  profileName.textContent = nameInput.value;
-  profileJob.textContent = jobInput.value;
-  closePopup(popupFormUserEditOpen);
-}
-popupFormUserEdit.addEventListener("submit", handleFormUserEditSubmit);
+// function handleFormUserEditSubmit(evt) {
+//   evt.preventDefault();
+//   const userInfoValue = new UserInfo(
+//     ".popup__input_type_name",
+//     ".popup__input_type_job"
+//   );
+//   userInfoValue.setUserInfo();
+//   // profileName.textContent = nameInput.value;
+//   // profileJob.textContent = jobInput.value;
+//   popupFormUserEditOpened.close();
+// }
+// popupFormUserEdit.addEventListener("submit", handleFormUserEditSubmit);
+
+//
+//
+//
+//
+//
+//
+//
 
 imageAddButton.addEventListener("click", () => {
-  openPopup(popupAddImageForm);
+  const popupFormAddImage = new Popup(".popup_new-item-form");
+  popupFormAddImage.open();
+  popupFormAddImage.setEventListeners();
+  // openPopup(popupAddImageForm);
   popupAddImageFormValidation.resetValidationState();
+  popupFormNewItem.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const itemValue = {
+      name: inputTitleFormAddNewCard.value,
+      link: inputLinkFormAddNewCard.value,
+    };
+
+    createCard(itemValue);
+    popupFormAddImage.close();
+  });
 });
 
-//Создание нового элемента
-function handleFormNewItemSubmit(event) {
-  event.preventDefault();
-  const itemValue = {
-    name: inputTitleFormAddNewCard.value,
-    link: inputLinkFormAddNewCard.value,
-  };
+// //Создание нового элемента
+// function handleFormNewItemSubmit(event) {
+//   event.preventDefault();
+//   const itemValue = {
+//     name: inputTitleFormAddNewCard.value,
+//     link: inputLinkFormAddNewCard.value,
+//   };
 
-  createCard(itemValue);
-  closePopup(popupAddImageForm);
-}
-popupFormNewItem.addEventListener("submit", handleFormNewItemSubmit);
+//   createCard(itemValue);
+//   closePopup(popupAddImageForm);
+// }
+// popupFormNewItem.addEventListener("submit", handleFormNewItemSubmit);
 
 // Сделайте так, чтобы Card принимал в конструктор функцию handleCardClick.
 // Эта функция должна открывать попап с картинкой при клике на карточку.
