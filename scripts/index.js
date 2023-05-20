@@ -3,22 +3,10 @@ import Card from "./card.js";
 import FormValidator from "./FormValidator.js";
 import Section from "./section.js";
 import PopupWithImage from "./popupWithImage.js";
-import Popup from "./popup.js";
 import UserInfo from "./userInfo.js";
+import PopupWithForm from "./popupWithForm.js";
 
-const profileName = document.querySelector(".profile__name");
-const profileJob = document.querySelector(".profile__job");
-const popupFormUserEditOpen = document.querySelector(".popup_form_user-edit");
-const nameInput = popupFormUserEditOpen.querySelector(
-  ".popup__input_type_name"
-);
-const jobInput = popupFormUserEditOpen.querySelector(".popup__input_type_job");
-const popupFormUserEdit = popupFormUserEditOpen.querySelector(
-  ".popup__form_type_user-edit"
-);
 const userEditButton = document.querySelector(".profile__edit-button");
-const popupFormNewItem = document.querySelector(".popup__form_type_new-item");
-const popupAddImageForm = document.querySelector(".popup_new-item-form");
 const imageGridList = document.querySelector(".photo-grid__list");
 const imageAddButton = document.querySelector(".profile__add-button");
 const inputLinkFormAddNewCard = document.querySelector(
@@ -27,80 +15,49 @@ const inputLinkFormAddNewCard = document.querySelector(
 const inputTitleFormAddNewCard = document.querySelector(
   ".popup__input_type_new-item-place"
 );
+const userInfoValue = new UserInfo(
+  ".popup__input_type_name",
+  ".popup__input_type_job"
+);
 
 function editUserData() {
-  const popupFormUserEditOpened = new Popup(".popup_form_user-edit");
+  const popupFormUserEditOpened = new PopupWithForm(
+    ".popup_form_user-edit",
+    handleFormUserEdit
+  );
   popupFormUserEditOpened.open();
-  popupFormUserEditOpened.setEventListeners();
+
   formUserEditValidation.resetValidationState();
   const userInfoValue = new UserInfo(
     ".popup__input_type_name",
     ".popup__input_type_job"
   );
   userInfoValue.getUserInfo();
-  popupFormUserEdit.addEventListener("submit", (evt) => {
-    evt.preventDefault();
-    userInfoValue.setUserInfo();
-    popupFormUserEditOpened.close();
-  });
+  popupFormUserEditOpened.setEventListeners();
 }
-// открытие попапа редактирования профиля по кнопке userEditButton
 userEditButton.addEventListener("click", editUserData);
 
-// function handleFormUserEditSubmit(evt) {
-//   evt.preventDefault();
-//   const userInfoValue = new UserInfo(
-//     ".popup__input_type_name",
-//     ".popup__input_type_job"
-//   );
-//   userInfoValue.setUserInfo();
-//   // profileName.textContent = nameInput.value;
-//   // profileJob.textContent = jobInput.value;
-//   popupFormUserEditOpened.close();
-// }
-// popupFormUserEdit.addEventListener("submit", handleFormUserEditSubmit);
-
-//
-//
-//
-//
-//
-//
-//
+function handleFormUserEdit() {
+  userInfoValue.setUserInfo();
+}
 
 imageAddButton.addEventListener("click", () => {
-  const popupFormAddImage = new Popup(".popup_new-item-form");
+  const popupFormAddImage = new PopupWithForm(
+    ".popup_new-item-form",
+    handleFormAddImageSubmit
+  );
   popupFormAddImage.open();
   popupFormAddImage.setEventListeners();
-  // openPopup(popupAddImageForm);
   popupAddImageFormValidation.resetValidationState();
-  popupFormNewItem.addEventListener("submit", (event) => {
-    event.preventDefault();
-    const itemValue = {
-      name: inputTitleFormAddNewCard.value,
-      link: inputLinkFormAddNewCard.value,
-    };
-
-    createCard(itemValue);
-    popupFormAddImage.close();
-  });
 });
 
-// //Создание нового элемента
-// function handleFormNewItemSubmit(event) {
-//   event.preventDefault();
-//   const itemValue = {
-//     name: inputTitleFormAddNewCard.value,
-//     link: inputLinkFormAddNewCard.value,
-//   };
-
-//   createCard(itemValue);
-//   closePopup(popupAddImageForm);
-// }
-// popupFormNewItem.addEventListener("submit", handleFormNewItemSubmit);
-
-// Сделайте так, чтобы Card принимал в конструктор функцию handleCardClick.
-// Эта функция должна открывать попап с картинкой при клике на карточку.
+function handleFormAddImageSubmit() {
+  const itemValue = {
+    name: inputTitleFormAddNewCard.value,
+    link: inputLinkFormAddNewCard.value,
+  };
+  createCard(itemValue);
+}
 
 function handleCardClick() {
   const popupFullscreenImageOpened = new PopupWithImage(
