@@ -20,7 +20,8 @@ const userInfoValue = new UserInfo(
   ".popup__input_type_job"
 );
 
-function editUserData() {
+// Слушатель на кнопку формы редактирования профиля
+userEditButton.addEventListener("click", () => {
   const popupFormUserEditOpened = new PopupWithForm(
     ".popup_form_user-edit",
     handleFormUserEdit
@@ -28,18 +29,21 @@ function editUserData() {
   popupFormUserEditOpened.open();
 
   formUserEditValidation.resetValidationState();
+
   const userInfoValue = new UserInfo(
     ".popup__input_type_name",
     ".popup__input_type_job"
   );
   userInfoValue.getUserInfo();
   popupFormUserEditOpened.setEventListeners();
-}
-userEditButton.addEventListener("click", editUserData);
+});
 
+//колбек для формы редактирования профиля
 function handleFormUserEdit() {
   userInfoValue.setUserInfo();
 }
+
+// Слушатель на кнопку формы добавления новой карточки
 
 imageAddButton.addEventListener("click", () => {
   const popupFormAddImage = new PopupWithForm(
@@ -48,13 +52,14 @@ imageAddButton.addEventListener("click", () => {
   );
   popupFormAddImage.open();
   popupFormAddImage.setEventListeners();
+  console.log("im image button click");
   popupAddImageFormValidation.resetValidationState();
 });
 
-function handleFormAddImageSubmit() {
+function handleFormAddImageSubmit(data) {
   const itemValue = {
-    name: inputTitleFormAddNewCard.value,
-    link: inputLinkFormAddNewCard.value,
+    name: data.place__name,
+    link: data.place__link,
   };
   createCard(itemValue);
 }
@@ -77,6 +82,7 @@ function createCard(data) {
   const card = new Card(data, "#photo-grid__item", handleCardClick);
   const cardElement = card.generateCard();
   renderImageElement(cardElement);
+  console.log("raz");
 }
 
 // класс Section
