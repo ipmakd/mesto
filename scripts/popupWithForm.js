@@ -10,6 +10,11 @@ export default class PopupWithForm extends Popup {
   close() {
     this._popup.classList.remove("popup_opened");
     this._popupForm.reset();
+    document.removeEventListener("keydown", (evt) => {
+      if (evt.key === "Escape") {
+        this.close();
+      }
+    });
   }
 
   _getInputValues() {
@@ -27,10 +32,11 @@ export default class PopupWithForm extends Popup {
       this._callback(this._getInputValues());
       this.close();
     });
-    this._popup.addEventListener("click", (evt) => {
+
+    this._popup.addEventListener("click", (event) => {
       if (
-        evt.target.classList.contains("popup") ||
-        evt.target.classList.contains("popup__close")
+        event.target.classList.contains("popup") ||
+        event.target.classList.contains("popup__close")
       ) {
         this.close();
       }
