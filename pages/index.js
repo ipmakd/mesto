@@ -1,20 +1,15 @@
-import { initialCards, validationConfig } from "./constants.js";
-import Card from "./card.js";
-import FormValidator from "./FormValidator.js";
-import Section from "./section.js";
-import PopupWithImage from "./popupWithImage.js";
-import UserInfo from "./userInfo.js";
-import PopupWithForm from "./popupWithForm.js";
+import { initialCards, validationConfig } from "../components/constants.js";
+import Card from "../components/card.js";
+import FormValidator from "../components/FormValidator.js";
+import Section from "../components/section.js";
+import PopupWithImage from "../components/popupWithImage.js";
+import UserInfo from "../components/userInfo.js";
+import PopupWithForm from "../components/popupWithForm.js";
 
 const userEditButton = document.querySelector(".profile__edit-button");
 const imageGridList = document.querySelector(".photo-grid__list");
 const imageAddButton = document.querySelector(".profile__add-button");
-const inputLinkFormAddNewCard = document.querySelector(
-  ".popup__input_type_new-item-link"
-);
-const inputTitleFormAddNewCard = document.querySelector(
-  ".popup__input_type_new-item-place"
-);
+
 const userInfoValue = new UserInfo(
   ".popup__input_type_name",
   ".popup__input_type_job"
