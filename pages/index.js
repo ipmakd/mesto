@@ -5,7 +5,7 @@ import Section from "../components/section.js";
 import PopupWithImage from "../components/popupWithImage.js";
 import UserInfo from "../components/userInfo.js";
 import PopupWithForm from "../components/popupWithForm.js";
-import "../pages/index.css";
+// import "./index.css";
 const userEditButton = document.querySelector(".profile__edit-button");
 const imageGridList = document.querySelector(".photo-grid__list");
 const imageAddButton = document.querySelector(".profile__add-button");
@@ -24,17 +24,15 @@ popupFormUserEditOpened.setEventListeners();
 // Слушатель на кнопку формы редактирования профиля
 userEditButton.addEventListener("click", () => {
   popupFormUserEditOpened.open();
+  // userInfoValue.getUserInfo();
   formUserEditValidation.resetValidationState();
-  const userInfoValue = new UserInfo(
-    ".popup__input_type_name",
-    ".popup__input_type_job"
-  );
-  userInfoValue.getUserInfo();
 });
 
 //колбек для формы редактирования профиля
 function handleFormUserEdit() {
-  userInfoValue.setUserInfo();
+  // userInfoValue.getUserInfo();
+
+  userInfoValue.setUserInfo(userInfoValue.getUserInfo());
 }
 
 const popupFormAddImage = new PopupWithForm(
@@ -56,25 +54,17 @@ function handleFormAddImageSubmit(data) {
   };
   createCard(itemValue);
 }
+const popupFullscreenImageOpened = new PopupWithImage(".popup_image");
+popupFullscreenImageOpened.setEventListeners();
 
 function handleCardClick() {
-  const popupFullscreenImageOpened = new PopupWithImage(
-    ".popup_image",
-    this._link,
-    this._name
-  );
-  popupFullscreenImageOpened.open();
-  popupFullscreenImageOpened.setEventListeners();
-}
-
-const renderImageElement = (itemElement) => {
-  imageGridList.prepend(itemElement);
-};
-
-function createCard(data) {
-  const card = new Card(data, "#photo-grid__item", handleCardClick);
-  const cardElement = card.generateCard();
-  renderImageElement(cardElement);
+  // const popupFullscreenImageOpened = new PopupWithImage(
+  //   ".popup_image"
+  // );
+  // console.log(this._link);
+  // debugger;
+  popupFullscreenImageOpened.open(this._link, this._name);
+  // popupFullscreenImageOpened.setEventListeners();
 }
 
 // класс Section
@@ -90,6 +80,17 @@ const cardList = new Section(
   ".photo-grid__list"
 );
 cardList.renderItems();
+
+// const renderImageElement = (itemElement) => {
+//   imageGridList.prepend(itemElement);
+// };
+
+function createCard(data) {
+  const card = new Card(data, "#photo-grid__item", handleCardClick);
+  const cardElement = card.generateCard();
+  cardList.addItem(cardElement);
+  // renderImageElement(cardElement);
+}
 
 // Валидация
 const formUserEdit = document.querySelector(".popup__form_type_user-edit");

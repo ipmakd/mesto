@@ -8,13 +8,13 @@ export default class PopupWithForm extends Popup {
   }
 
   close() {
-    this._popup.classList.remove("popup_opened");
+    super.close();
     this._popupForm.reset();
-    document.removeEventListener("keydown", (evt) => {
-      if (evt.key === "Escape") {
-        this.close();
-      }
-    });
+    // document.removeEventListener("keydown", (evt) => {
+    //   if (evt.key === "Escape") {
+    //     this.close();
+    //   }
+    // });
   }
 
   _getInputValues() {
@@ -27,20 +27,21 @@ export default class PopupWithForm extends Popup {
   }
 
   setEventListeners() {
+    super.setEventListeners();
     this._popupForm.addEventListener("submit", (evt) => {
       evt.preventDefault();
       this._callback(this._getInputValues());
       this.close();
     });
 
-    this._popup.addEventListener("click", (event) => {
-      if (
-        event.target.classList.contains("popup") ||
-        event.target.classList.contains("popup__close")
-      ) {
-        this.close();
-      }
-    });
-    this._handleEscClose();
+    // this._popup.addEventListener("click", (event) => {
+    //   if (
+    //     event.target.classList.contains("popup") ||
+    //     event.target.classList.contains("popup__close")
+    //   ) {
+    //     this.close();
+    //   }
+    // });
+    // this._handleEscClose();
   }
 }
