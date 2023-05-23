@@ -8,8 +8,6 @@ export default class PopupWithImage extends Popup {
     );
     this._popupFullScreenCapture =
       this._popup.querySelector(".popup__figcaption");
-    // this._link = link;
-    // this._name = name;
   }
   open(link, name) {
     super.open();
