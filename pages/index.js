@@ -20,14 +20,16 @@ popupFormUserEditOpened.setEventListeners();
 // Слушатель на кнопку формы редактирования профиля
 userEditButton.addEventListener("click", () => {
   popupFormUserEditOpened.open();
-  // userInfoValue.getUserInfo();
   formUserEditValidation.resetValidationState();
 });
 
 //колбек для формы редактирования профиля
-function handleFormUserEdit() {
-  popupFormUserEditOpened._getInputValues();
-  userInfoValue.setUserInfo(this._formValues);
+function handleFormUserEdit(data) {
+  const userDataValue = {
+    userName: data.profileNameValue,
+    userInfo: data.profileInfoValue,
+  };
+  userInfoValue.setUserInfo(userDataValue);
 }
 
 const popupFormAddImage = new PopupWithForm(
