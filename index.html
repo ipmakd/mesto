@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Проект Место</title>
-    <!-- <link rel="stylesheet" href="./pages/index.css"> -->
+    <link rel="stylesheet" href="./pages/index.css">
   </head>
   <body class="root">
     <header class="header">
@@ -13,7 +13,8 @@
     </header>
     <main class="content">
       <section class="profile">
-        <img class="profile__photo" src="<%=require('../images/Kusto.jpg')%>" alt="портрет пожилого мужчины в красной шапке на фоне моря">
+        <img class="profile__photo" src="../images/Kusto.jpg" alt="портрет пожилого мужчины в красной шапке на фоне моря">
+        <button class="profile__photo_edit-button"></button>
         <div class="profile__info">
           <div class="profile__name-edit">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
@@ -29,7 +30,10 @@
             <li class="photo-grid__item">
               <img class="photo-grid__image" src="#" alt="храм у подножия гор">
               <h2 class="photo-grid__title"></h2>
-              <button class="photo-grid__like" aria-label="лайк" type="button"></button>
+              <div class="photo-grid__like-group">
+                <button class="photo-grid__like" aria-label="лайк" type="button"></button>
+                <p class="photo-grid__like-counter">0</p>
+              </div>
               <button class="photo-grid__remove-item" aria-label="удалить картинку" type="button"></button>
             </li>
           </template>
@@ -74,6 +78,29 @@
         <button class="popup__close" aria-label="закрыть окно" type="button"></button>
       </div>
     </section>
-    <!-- <script src="./pages/index.js" type="module"></script> -->
+   <!-- попап подтверждения удаления картинки -->
+    <section class="popup popup_confirm " aria-label="подтверждения удаления картинки"> 
+      <div class="popup__confirm-container">
+        <h2 class="popup__title popup__title_confirm">Вы уверены?</h2>
+        <button class="popup__button popup__button_confirm" aria-label="подтвердить удаление" type="button">Да</button>
+        <button class="popup__close" aria-label="закрыть окно" type="button"></button>
+      </div>
+    </section>
+
+    <!-- попап обновления аватара -->
+    <section class="popup popup_update-avatar">
+      <div class="popup__container-update-avatar">
+        <button class="popup__close" aria-label="закрыть окно" type="button"></button>
+        <h2 class="popup__title popup__title_type_new-item-form">Обновить аватар</h2>
+        <form class="popup__form popup__form_type_new-item" name="name" novalidate>
+          <input id="update-avatar-link-input" class="popup__input popup__input_type_update-avatar-link" type="url" name="avatar__link" placeholder="Ссылка на новый аватар" required>
+          <span class="new-item-link-input-error popup__span-error"></span>
+          <button type="submit" class="popup__button popup__button-update-avatar">Сохранить</button>
+        </form>
+      </div>
+    </section>
+
+
+    <script src="./pages/index.js" type="module"></script>
   </body>
 </html>

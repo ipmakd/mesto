@@ -1,0 +1,9 @@
+.photo-grid__like-group {
+  grid-area: like;
+display: flex;
+flex-direction: column;
+align-self: end;
+  justify-self: end;
+  margin-bottom: 22px;
+  margin-right: 20px;
+}

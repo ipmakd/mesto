@@ -1,0 +1,20 @@
+.profile__photo_edit-button {
+  grid-area: photo;
+  width: 120px;
+  height: 120px;
+  border: 0;
+  justify-self: center;
+  align-self: center;
+  background-color: #000;
+  opacity: 0;
+  z-index: 999;
+  background-image: url(../../../../images/avatar_edit.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 26px 26px;
+}
+
+.profile__photo_edit-button:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
